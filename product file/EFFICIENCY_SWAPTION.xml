@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BODY>
+    <product name="EFFICIENCY_SWAPTION">
+        <mapping>
+            <comp type="COMPONENT_OPTION">
+                <property name="OptionQuantLib">Option</property>
+            </comp>
+            <comp type="COMPONENT_CASHFLOW">
+                <property name="FixedLegQuantLib">FixedLeg</property>
+            </comp>
+            <comp type="COMPONENT_CASHFLOW">
+                <property name="FloatingLegQuantLib">FloatingLeg</property>
+            </comp>
+            <comp type="COMPONENT_INDEX">
+                <property name="IndexQuantLib">IndexEURIB</property>
+            </comp>
+            <comp type="COMPONENT_PRINCIPAL">
+                <property name="NominalQuantLib">Principal</property>
+            </comp>
+            <comp type="RATE">
+                <property name="FixedRateQuantLib">FixedRate</property>
+            </comp>
+            <comp type="FULLDATE">
+                <property name="startDateQuantLib">FirstOptionDate</property>
+            </comp>
+            <comp type="FULLDATE">
+                <property name="maturityOptionQuantLib">MaturityDate</property>
+            </comp>
+            <comp type="FULLDATE">
+                <property name="endDateQuantLib">End_Date</property>
+            </comp>
+        </mapping>
+    </product>
+</BODY>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{77C03CE9-441D-4309-BC06-67F20292DB2E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>EfficiencyLibDLL</RootNamespace>
+    <ProjectName>Efficiency.PricerLib.ProductDLL</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\local\boost_1_60_0;C:\local\QuantLib-1.7\QuantLib-1.7;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\local\boost_1_60_0\lib32-msvc-12.0;C:\local\QuantLib-1.7\QuantLib-1.7\lib;$(LibraryPath)</LibraryPath>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\local\boost_1_60_0;C:\local\QuantLib-1.7\QuantLib-1.7;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\local\boost_1_60_0\lib32-msvc-12.0;C:\local\QuantLib-1.7\QuantLib-1.7\lib;$(LibraryPath)</LibraryPath>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;EFFICIEBCYLIBDLL_EXPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_DEBUG;_WINDOWS;_USRDLL;EFFICIENCYLIBDLL_EXPORTS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;EFFICIEBCYLIBDLL_EXPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;NDEBUG;_WINDOWS;_USRDLL;EFFICIENCYLIBDLL_EXPORTS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CapFloorVolatility.h" />
+    <ClInclude Include="Catalogue.h" />
+    <ClInclude Include="ComponentCashFlowMust.h" />
+    <ClInclude Include="ComponentIndexMust.h" />
+    <ClInclude Include="ComponentMust.h" />
+    <ClInclude Include="ComponentOptionMust.h" />
+    <ClInclude Include="ComponentPrincipalMust.h" />
+    <ClInclude Include="CurveData.h" />
+    <ClInclude Include="DateMust.h" />
+    <ClInclude Include="DllHeader.h" />
+    <ClInclude Include="EfficiencyLibComponents.h" />
+    <ClInclude Include="EfficiencyLibProduct.h" />
+    <ClInclude Include="EfficiencyLibProducts.h" />
+    <ClInclude Include="EnumsProducts.h" />
+    <ClInclude Include="Mapping.h" />
+    <ClInclude Include="MatriceMust.h" />
+    <ClInclude Include="MustCapFloor.h" />
+    <ClInclude Include="MustSwaption.h" />
+    <ClInclude Include="MustVanilleSwap.h" />
+    <ClInclude Include="Portefeuille.h" />
+    <ClInclude Include="RateMust.h" />
+    <ClInclude Include="SwapFixedLeg.h" />
+    <ClInclude Include="SwapFloatingLeg.h" />
+    <ClInclude Include="SwaptionVolatility.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="TradeMust.h" />
+    <ClInclude Include="VolStructureUtilities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Catalogue.cpp" />
+    <ClCompile Include="ComponentCashFlowMust.cpp" />
+    <ClCompile Include="ComponentIndexMust.cpp" />
+    <ClCompile Include="ComponentMust.cpp" />
+    <ClCompile Include="ComponentOptionMust.cpp" />
+    <ClCompile Include="ComponentPrincipalMust.cpp" />
+    <ClCompile Include="DateMust.cpp" />
+    <ClCompile Include="EfficiencyLibProduct.cpp" />
+    <ClCompile Include="EfficiencyLibProducts.cpp" />
+    <ClCompile Include="Mapping.cpp" />
+    <ClCompile Include="MatriceMust.cpp" />
+    <ClCompile Include="MustCapFloor.cpp" />
+    <ClCompile Include="MustSwaption.cpp" />
+    <ClCompile Include="MustVanilleSwap.cpp" />
+    <ClCompile Include="RateMust.cpp" />
+    <ClCompile Include="SwapFixedLeg.cpp" />
+    <ClCompile Include="SwapFloatingLeg.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="TradeMust.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BODY>
+    <productList>
+        <prod name="EFFICIENCY_SWAP" type="SWAP" activate="True" modele="QUANTLIB_FLOW">EFFICIENCY_SWAP.xml</prod>
+        <prod name="EFFICIENCY_CAPFLOOR" type="CAPFLOOR" activate="True" modele="QUANTLIB_BLACKFT">EFFICIENCY_CAPFLOOR.xml</prod>
+        <prod name="EFFICIENCY_SWAPTION" type="SWAPTION" activate="True" modele="QUANTLIB_BLACKFT">EFFICIENCY_SWAPTION.xml</prod>
+    </productList>
+    <typeList>
+        <prod type="SWAP">EFFICIENCY_SWAP.xml</prod>
+        <prod type="SWAP">EFFICIENCY_SWAP.xml</prod>
+        <prod type="CAPFLOOR">EFFICIENCY_CAPFLOOR.xml</prod>
+        <prod type="SWAPTION">EFFICIENCY_SWAPTION.xml</prod>
+    </typeList>
+    <modelList>
+        <model name="EFFICIENCY_LMM" />
+        <model name="QUANTLIB_LMM" />
+        <model name="QUANTLIB_BLACKFT" />
+        <model name="QUANTLIB_HULLWHITE" />
+        <model name="QUANTLIB_FLOW" />
+    </modelList>
+</BODY>
