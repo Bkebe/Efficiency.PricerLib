@@ -1,5 +1,6 @@
 #include "EfficiencyLibProducts.h"
 void  EfficiencyLibProducts::setModelsProductsTypes(){
+	catalogue = new Catalogue();
 	for (std::size_t iTrade = 0; iTrade < portefeuille.AllTrades->size(); iTrade++)
 	{
 		if (catalogue->SearchType(portefeuille.AllTrades->operator[](iTrade)->nameProduct) != ""
@@ -56,12 +57,12 @@ void  EfficiencyLibProducts::makeProducts(){
 
 				// Link the curve to the term structure
 				this->forwardingTermStructure.linkTo(ocurve);
-				Date today(6, October, 2014);
+				//Date today(6, October, 2014);
 				// today = calendar.adjust(today);
 				Settings::instance().evaluationDate() = today;
 
 
-				MustVanilleSwap* swap = new MustVanilleSwap(typeProduct, path, modelProduct, Xmlhdldoc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
+				MustVanilleSwap* swap = new MustVanilleSwap(today,typeProduct, path, modelProduct, doc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
 				swap->makeSwap(forwardingTermStructure);
 				AllProducts.push_back(swap);
 			}
@@ -70,7 +71,7 @@ void  EfficiencyLibProducts::makeProducts(){
 			{
 
 				
-				MustCapFloor* capfloor = new MustCapFloor(typeProduct, path, modelProduct,Xmlhdldoc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
+				MustCapFloor* capfloor = new MustCapFloor(today,typeProduct, path, modelProduct,doc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
 
 				capfloor->makeCapFloor(forwardingTermStructure);
 				AllProducts.push_back(capfloor);
@@ -78,7 +79,7 @@ void  EfficiencyLibProducts::makeProducts(){
 			break;
 			case EfficiencyProduct::EfficiencyTypeProduct::SWAPTION:
 			{
-				MustSwaption* swaption = new MustSwaption(typeProduct, path, modelProduct, Xmlhdldoc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
+				MustSwaption* swaption = new MustSwaption(today,typeProduct, path, modelProduct, doc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
 				swaption->makeSwaption(forwardingTermStructure);
 				AllProducts.push_back(swaption);
 			}
@@ -86,7 +87,7 @@ void  EfficiencyLibProducts::makeProducts(){
 			default:
 				//just to do something
 			{
-				MustVanilleSwap* swapTest = new MustVanilleSwap(typeProduct,path, modelProduct, Xmlhdldoc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
+				MustVanilleSwap* swapTest = new MustVanilleSwap(today,typeProduct,path, modelProduct, doc, portefeuille.AllTrades->operator[](iTrade)->tradeID);
 				swapTest->makeSwap(forwardingTermStructure);
 				AllProducts.push_back(swapTest);
 			}

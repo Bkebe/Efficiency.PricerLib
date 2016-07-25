@@ -12,7 +12,7 @@ using namespace QuantLib;
 class EFFICIEBCYLIBDLL_API MustCapFloor : public EfficiencyLibProduct
 {
 public:
-	MustCapFloor(EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlHandle hdldoc, string trId);
+	MustCapFloor(Date valuationDate, EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlDocument hdldoc, string trId);
 	void setComponentsQuantLib();
 	void makeCapFloor(Handle<QuantLib::YieldTermStructure> forwardingTermStructure);
 	virtual ~MustCapFloor(){}

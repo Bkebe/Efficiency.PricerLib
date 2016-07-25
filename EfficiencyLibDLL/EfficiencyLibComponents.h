@@ -8,6 +8,7 @@
 #include "ComponentOptionMust.h"
 #include "ComponentPrincipalMust.h"
 #include "RateMust.h"
+#include "EnumMust.h"
 #include "SwapFloatingLeg.h"
 #include "SwapFixedLeg.h"
 using namespace QuantLib;

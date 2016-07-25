@@ -16,7 +16,7 @@ public class  EFFICIEBCYLIBDLL_API DateMust : public ComponentMust
 public:
 	// Constructeurs
 	DateMust() {}
-	void setComponent(TiXmlHandle docMUSTHandle, string nameDate, string tradeId);
+	void setComponent(TiXmlDocument doc, string nameDate, string tradeId);
 
 	//attributs
 	string dateString;

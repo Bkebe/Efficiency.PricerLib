@@ -99,6 +99,7 @@
     <ClInclude Include="EfficiencyLibComponents.h" />
     <ClInclude Include="EfficiencyLibProduct.h" />
     <ClInclude Include="EfficiencyLibProducts.h" />
+    <ClInclude Include="EnumMust.h" />
     <ClInclude Include="EnumsProducts.h" />
     <ClInclude Include="Mapping.h" />
     <ClInclude Include="MatriceMust.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="DateMust.cpp" />
     <ClCompile Include="EfficiencyLibProduct.cpp" />
     <ClCompile Include="EfficiencyLibProducts.cpp" />
+    <ClCompile Include="EnumMust.cpp" />
     <ClCompile Include="Mapping.cpp" />
     <ClCompile Include="MatriceMust.cpp" />
     <ClCompile Include="MustCapFloor.cpp" />

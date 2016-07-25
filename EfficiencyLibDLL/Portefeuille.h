@@ -24,12 +24,12 @@ class EFFICIEBCYLIBDLL_API  Portefeuille
 public:
 	// Constructeurs
 	Portefeuille(){}
-	Portefeuille(TiXmlHandle docMUSTHandle)
+	Portefeuille(TiXmlDocument doc)
 	{
 		TradeMust* currentTrade;
 		string prod_name;
 		string trade_id;
-	
+		TiXmlHandle docMUSTHandle(&doc);
 		AllTrades = new vector<TradeMust*>();
 			TiXmlElement *Component = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 

@@ -152,7 +152,7 @@ namespace EfficiencyPricerLibApplication {
 			this->groupBox2->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->groupBox2->Location = System::Drawing::Point(3, 3);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(651, 184);
+			this->groupBox2->Size = System::Drawing::Size(651, 181);
 			this->groupBox2->TabIndex = 57;
 			this->groupBox2->TabStop = false;
 			// 
@@ -164,7 +164,7 @@ namespace EfficiencyPricerLibApplication {
 			this->npvDeviseTextBox->ForeColor = System::Drawing::SystemColors::MenuHighlight;
 			this->npvDeviseTextBox->Location = System::Drawing::Point(213, 16);
 			this->npvDeviseTextBox->Name = L"npvDeviseTextBox";
-			this->npvDeviseTextBox->Size = System::Drawing::Size(51, 26);
+			this->npvDeviseTextBox->Size = System::Drawing::Size(49, 26);
 			this->npvDeviseTextBox->TabIndex = 53;
 			// 
 			// GammaTextBox
@@ -172,6 +172,7 @@ namespace EfficiencyPricerLibApplication {
 			this->GammaTextBox->Enabled = false;
 			this->GammaTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->GammaTextBox->ForeColor = System::Drawing::SystemColors::MenuHighlight;
 			this->GammaTextBox->Location = System::Drawing::Point(86, 99);
 			this->GammaTextBox->Name = L"GammaTextBox";
 			this->GammaTextBox->Size = System::Drawing::Size(121, 26);
@@ -185,15 +186,16 @@ namespace EfficiencyPricerLibApplication {
 			this->label6->ForeColor = System::Drawing::Color::Black;
 			this->label6->Location = System::Drawing::Point(6, 101);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(62, 18);
+			this->label6->Size = System::Drawing::Size(78, 18);
 			this->label6->TabIndex = 51;
-			this->label6->Text = L"Gamma :";
+			this->label6->Text = L"Gamma % :";
 			// 
 			// DeltaTextBox
 			// 
 			this->DeltaTextBox->Enabled = false;
 			this->DeltaTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->DeltaTextBox->ForeColor = System::Drawing::SystemColors::MenuHighlight;
 			this->DeltaTextBox->Location = System::Drawing::Point(86, 58);
 			this->DeltaTextBox->Name = L"DeltaTextBox";
 			this->DeltaTextBox->Size = System::Drawing::Size(121, 26);
@@ -205,7 +207,7 @@ namespace EfficiencyPricerLibApplication {
 			this->groupBox1->Controls->Add(this->NPVDetailButton);
 			this->groupBox1->Controls->Add(this->RiskFactorButton);
 			this->groupBox1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->groupBox1->Location = System::Drawing::Point(454, 81);
+			this->groupBox1->Location = System::Drawing::Point(454, 78);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(191, 97);
 			this->groupBox1->TabIndex = 50;
@@ -271,9 +273,9 @@ namespace EfficiencyPricerLibApplication {
 			this->label3->ForeColor = System::Drawing::Color::Black;
 			this->label3->Location = System::Drawing::Point(6, 58);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(46, 18);
+			this->label3->Size = System::Drawing::Size(62, 18);
 			this->label3->TabIndex = 41;
-			this->label3->Text = L"Delta :";
+			this->label3->Text = L"Delta % :";
 			// 
 			// label4
 			// 
@@ -283,15 +285,16 @@ namespace EfficiencyPricerLibApplication {
 			this->label4->ForeColor = System::Drawing::Color::Black;
 			this->label4->Location = System::Drawing::Point(6, 151);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(46, 18);
+			this->label4->Size = System::Drawing::Size(62, 18);
 			this->label4->TabIndex = 44;
-			this->label4->Text = L"Vega :";
+			this->label4->Text = L"Vega % :";
 			// 
 			// VegaTextBox
 			// 
 			this->VegaTextBox->Enabled = false;
 			this->VegaTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->VegaTextBox->ForeColor = System::Drawing::SystemColors::MenuHighlight;
 			this->VegaTextBox->Location = System::Drawing::Point(86, 146);
 			this->VegaTextBox->Name = L"VegaTextBox";
 			this->VegaTextBox->Size = System::Drawing::Size(121, 26);
@@ -363,7 +366,7 @@ namespace EfficiencyPricerLibApplication {
 			this->Pricebutton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Pricebutton->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->Pricebutton->Location = System::Drawing::Point(274, 132);
+			this->Pricebutton->Location = System::Drawing::Point(274, 130);
 			this->Pricebutton->MaximumSize = System::Drawing::Size(119, 42);
 			this->Pricebutton->MinimumSize = System::Drawing::Size(119, 42);
 			this->Pricebutton->Name = L"Pricebutton";
@@ -425,7 +428,7 @@ namespace EfficiencyPricerLibApplication {
 			// Closebutton
 			// 
 			this->Closebutton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->Closebutton->Location = System::Drawing::Point(551, 6);
+			this->Closebutton->Location = System::Drawing::Point(545, 6);
 			this->Closebutton->Name = L"Closebutton";
 			this->Closebutton->Size = System::Drawing::Size(103, 35);
 			this->Closebutton->TabIndex = 61;
@@ -438,9 +441,9 @@ namespace EfficiencyPricerLibApplication {
 			this->closePanel->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->closePanel->Controls->Add(this->Closebutton);
 			this->closePanel->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->closePanel->Location = System::Drawing::Point(0, 462);
+			this->closePanel->Location = System::Drawing::Point(0, 456);
 			this->closePanel->Name = L"closePanel";
-			this->closePanel->Size = System::Drawing::Size(657, 44);
+			this->closePanel->Size = System::Drawing::Size(657, 56);
 			this->closePanel->TabIndex = 62;
 			// 
 			// splitContainer1
@@ -458,8 +461,8 @@ namespace EfficiencyPricerLibApplication {
 			// splitContainer1.Panel2
 			// 
 			this->splitContainer1->Panel2->Controls->Add(this->groupBox2);
-			this->splitContainer1->Size = System::Drawing::Size(657, 438);
-			this->splitContainer1->SplitterDistance = 198;
+			this->splitContainer1->Size = System::Drawing::Size(657, 432);
+			this->splitContainer1->SplitterDistance = 195;
 			this->splitContainer1->TabIndex = 63;
 			// 
 			// MyForm
@@ -468,7 +471,7 @@ namespace EfficiencyPricerLibApplication {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::GhostWhite;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(657, 506);
+			this->ClientSize = System::Drawing::Size(657, 512);
 			this->Controls->Add(this->splitContainer1);
 			this->Controls->Add(this->closePanel);
 			this->Controls->Add(this->menuStrip1);
@@ -529,7 +532,7 @@ namespace EfficiencyPricerLibApplication {
 		openFileDialog1->ShowDialog();
 		String ^ FilePath = openFileDialog1->FileName;
 		LoadTextBox->Text = FilePath;
-
+		Date today(6, October, 2014);
 		// si un chemin est indiqué
 		if (LoadTextBox->Text != "") {
 			char* pathC = (char*)Marshal::StringToHGlobalAnsi(LoadTextBox->Text).ToPointer();
@@ -548,7 +551,10 @@ namespace EfficiencyPricerLibApplication {
 					else // si le fichier est chargé
 					{
 						// création de la fenêtre de la table de mapping
+
 						DateTextBox->Enabled = true;
+						//DateTextBox->Text = toda
+
 						DeltaTextBox->Enabled = true;
 						NPVTextBox->Enabled = true;
 						GammaTextBox->Enabled = true;
@@ -559,9 +565,8 @@ namespace EfficiencyPricerLibApplication {
 						TiXmlHandle hdl(&doc);
 						try {
 							/*Construction of all products*/
-							EffLibProducts = new EfficiencyLibProducts(hdl);
+							EffLibProducts = new EfficiencyLibProducts(today, doc);
 							EffLibProducts->setModelsProductsTypes();
-
 							EffLibProducts->makeProducts();
 						}
 						catch (string e) {
@@ -604,27 +609,56 @@ private: System::Void Pricebutton_Click(System::Object^  sender, System::EventAr
 		tableauNPV->clear();
 		tableauGrecs->clear();
 
+		if (this->formTable != nullptr){
+			if (formTable->catalogueIsChanged){
+				EffLibProducts->setModelsProductsTypes();
+				EffLibProducts->AllProducts.clear();
+				EffLibProducts->makeProducts();
+			}
+		}
 		/*pricer tous les trade qui sont dans "EffLibProducts" */
 		if (EffLibProducts->AllProducts[0] != NULL) {
-			double npv;
+			double npv=0;
+			double npvFixedLeg =0;
+			double npvFloatingLeg=0;
+			double delta, vega, gamma, theta;
+
 			double npvSomme = 0;
 			string type;
 			string id;
-
 			for (std::size_t numProd = 0; numProd < EffLibProducts->AllProducts.size(); numProd++)
 			{
 				npv = (EffLibProducts->AllProducts[numProd])->price();
+				npvFixedLeg = (EffLibProducts->AllProducts[numProd])->npvFixedLeg;
+				npvFloatingLeg = (EffLibProducts->AllProducts[numProd])->npvFloatingLeg;
+				delta = (EffLibProducts->AllProducts[numProd])->delta;
+				vega = (EffLibProducts->AllProducts[numProd])->vega;
+				gamma = (EffLibProducts->AllProducts[numProd])->gamma;
+				theta = (EffLibProducts->AllProducts[numProd])->theta;
+
 				DeuxChiff(&npv);
+				DeuxChiff(&npvFixedLeg);
+				DeuxChiff(&npvFloatingLeg);
+				DeuxChiff(&npvFloatingLeg);
+				DeuxChiff(&delta);
+				DeuxChiff(&vega);
+				DeuxChiff(&gamma);
+				DeuxChiff(&theta);
+
 
 				type = EffLibProducts->portefeuille.AllTrades->operator[](numProd)->typeProduct;
 
 				id = EffLibProducts->portefeuille.AllTrades->operator[](numProd)->tradeID;
 
-				tableauNPV->push_back(std::make_tuple(id, type, npv, 0, 0));
-				tableauGrecs->push_back(std::make_tuple(id, type, 0, 0, 0, 0));
+				tableauNPV->push_back(std::make_tuple(id, type, npv, npvFixedLeg, npvFloatingLeg));
+				tableauGrecs->push_back(std::make_tuple(id, type, delta, vega, gamma, theta));
 				npvSomme += npv;
 			}
 			NPVTextBox->Text = npvSomme.ToString();
+			DeltaTextBox->Text = delta.ToString();
+			GammaTextBox->Text = gamma.ToString();
+			VegaTextBox->Text = vega.ToString();
+			
 		}
 }
 private: System::Void RiskFactorButton_Click(System::Object^  sender, System::EventArgs^  e) {

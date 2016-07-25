@@ -18,7 +18,7 @@ public:
 	// Constructeurs
 	RateMust();
 	~RateMust();
-	void setComponent(TiXmlHandle docMUSTHandle, string nameRate, string tradeId);
+	void setComponent(TiXmlDocument doc, string nameRate, string tradeId);
 
 	//Attributs
 	string rateString;

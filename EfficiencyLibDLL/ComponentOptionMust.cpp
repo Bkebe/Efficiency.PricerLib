@@ -1,11 +1,11 @@
 #include "ComponentOptionMust.h"
 
-void ComponentOptionMust::setComponents(TiXmlHandle docMUSTHandle, string nameOption, string tradeId)
+void ComponentOptionMust::setComponents(TiXmlDocument doc, string nameOption, string tradeId)
 {
 
 	TiXmlElement *Component;
 	TiXmlElement *elem;
-
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 
 	while (Trade)
@@ -24,7 +24,7 @@ void ComponentOptionMust::setComponents(TiXmlHandle docMUSTHandle, string nameOp
 						payOrSell = Component->FirstChild("PORS")->ToElement()->GetText();
 						freqString = Component->FirstChild("EXPIRY_SCHED")->FirstChild("BASIC_SCHED")->FirstChild("SCHED_DEF")->FirstChild("FREQ")->ToElement()->GetText();
 						settlementType = Component->FirstChild("EXPIRY_SCHED")->FirstChild("ACTUAL_SETTLE_MODE")->ToElement()->GetText();
-
+						freqQ = this->eff_convert_frequency(freqString.c_str()[0]);
 						//firstExpiry = Component->FirstChild("EXPIRY_SCHED")->FirstChild("BASIC_SCHED")->FirstChild("START_DATE")->FirstChild("DATE_FORMULA")->FirstChild("TARGET")->FirstChild("ATTRIBUTE")->ToElement()->GetText();
 						//lastExpiry = Component->FirstChild("EXPIRY_SCHED")->FirstChild("BASIC_SCHED")->FirstChild("END_DATE")->FirstChild("DATE_FORMULA")->FirstChild("TARGET")->FirstChild("ATTRIBUTE")->ToElement()->GetText();
 

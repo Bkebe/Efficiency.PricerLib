@@ -2,13 +2,13 @@
 #include "RateMust.h"
 RateMust::RateMust(){}
 
-void RateMust::setComponent(TiXmlHandle docMUSTHandle, string nameRate, string tradeId)
+void RateMust::setComponent(TiXmlDocument doc, string nameRate, string tradeId)
 {
 	
 	//rates = new vector<Rate> ();
 	//matrixRate = new vector<std::tuple<Date, Date, Rate>>();
 	int test = 0;
-
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Component;
 	TiXmlElement *ComponentMatrix;
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
@@ -40,7 +40,7 @@ void RateMust::setComponent(TiXmlHandle docMUSTHandle, string nameRate, string t
 										if (strcmp(ComponentMatrix->FirstChild("NAME")->ToElement()->GetText(), "MatrixRates") == 0)
 										{
 											MatriceMust* matrixOfRates = new MatriceMust();
-											matrixOfRates->setComponent(docMUSTHandle, "MatrixRates", tradeId);
+											matrixOfRates->setComponent(doc, "MatrixRates", tradeId);
 											matrixRate=this->eff_matice_rate(matrixOfRates->matrice);
 											for (std::size_t sizeMat = 0; sizeMat < matrixOfRates->matrice.size(); sizeMat++)
 											{

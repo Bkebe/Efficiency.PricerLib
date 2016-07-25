@@ -2,7 +2,7 @@
 #pragma once
 #include "ComponentIndexMust.h"
 
-void ComponentIndexMust::setComponent(TiXmlHandle docMUSTHandle, string nameIndex, string tradeId)
+void ComponentIndexMust::setComponent(TiXmlDocument doc, string nameIndex, string tradeId)
 {
 	int test = 0;
 	TiXmlElement *Component;
@@ -13,6 +13,7 @@ void ComponentIndexMust::setComponent(TiXmlHandle docMUSTHandle, string nameInde
 
 	spreadString = "";
 	// le Id du trade qu'on cherche
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 
 	while (Trade)
@@ -63,7 +64,7 @@ void ComponentIndexMust::setComponent(TiXmlHandle docMUSTHandle, string nameInde
 									if (strcmp(ComponentSpread->FirstChild("NAME")->ToElement()->GetText(), "MatrixSpread") == 0)
 									{
 										MatriceMust* matrixOfSpread = new MatriceMust();
-										matrixOfSpread->setComponent(docMUSTHandle, "MatrixSpread", tradeId);
+										matrixOfSpread->setComponent(doc, "MatrixSpread", tradeId);
 										matrixSpread = this->eff_matice_spread(matrixOfSpread->matrice);
 										for (std::size_t sizeMat = 0; sizeMat < matrixOfSpread->matrice.size(); sizeMat++)
 										{

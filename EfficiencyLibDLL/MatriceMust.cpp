@@ -1,12 +1,12 @@
 #include "MatriceMust.h"
-void MatriceMust::setComponent(TiXmlHandle docMUSTHandle, string nameMatrix, string tradeId) // constructeur
+void MatriceMust::setComponent(TiXmlDocument doc, string nameMatrix, string tradeId) // constructeur
 {
 	int height; // nombre de lignes
 	int width;  // nombre de colonnes
 
 	// création de la matrice
 	TiXmlElement *Component;
-
+	TiXmlHandle docMUSTHandle(&doc);
 
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 

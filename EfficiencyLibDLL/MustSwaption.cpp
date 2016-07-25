@@ -3,7 +3,7 @@
 #include "MustSwaption.h"
 
 
-MustSwaption::MustSwaption(EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlHandle hdldoc, string trId) : EfficiencyLibProduct(typeProd,paths, modelProd, hdldoc, trId){
+MustSwaption::MustSwaption(Date valuationDate, EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlDocument hdldoc, string trId) : EfficiencyLibProduct(valuationDate, typeProd, paths, modelProd, hdldoc, trId){
 	modelProduct = modelProd;
 }
 void MustSwaption::setComponentsQuantLib(){
@@ -35,6 +35,17 @@ void MustSwaption::setComponentsQuantLib(){
 	//SwapType
 	VanillaSwap::Type swapType = VanillaSwap::Payer;
 	Settlement::Type settlementType = Settlement::Physical;
+	if (style == EfficiencyProduct::SwaptionStyle::BERM){
+		/* set vetcor of exercise dates*/
+		Date exDate = startDateObj.dateQ;
+		while (exDate <= endDateObj.dateQ)
+		{
+			exerciseDates.push_back(exDate);
+			exDate.operator+=(Period(componentOption.freqQ));
+		}
+
+	}
+
 }
 std::vector<Real> MustSwaption::fixedRatesFreq(std::vector<std::tuple<Date, Date, Real>> matrixRate, Date settlementDate, Date maturity, Frequency fixedLegFrequency)
 {
@@ -68,7 +79,53 @@ boost::shared_ptr< VanillaSwap >  MustSwaption::constructVanillaSwap(boost::shar
 
 
 	Real fixedrate = MustSwaption::fixedRatesFreq(fixedRateObj.matrixRate, maturityObj.dateQ, endDateObj.dateQ, fixedLegObj.freqQ)[0];
-	//Real fixedSpread = fixedRatesFreq(index.matrixSpread, maturity.dateQ, tenor.dateQ, floating_LegFlow.freqQ)[0];
+	
+	switch (style){
+	case EfficiencyProduct::SwaptionStyle::EURO:
+	{
+		boost::shared_ptr<VanillaSwap> swap(
+			new VanillaSwap(swapType, ComponentPrincipalMust.nominal[0],
+			fixed_Leg.fixedSchedule(maturityObj.dateQ, endDateObj.dateQ), fixedrate, fixedLegObj.basisQ,
+			floating_leg.floatSchedule(maturityObj.dateQ, endDateObj.dateQ), myIndex, 0.0,
+			floatingLegObj.basisQ));
+		return swap;
+	}
+	break;
+	case EfficiencyProduct::SwaptionStyle::AMER:
+	{
+		Date startDate = TARGET().advance(startDateObj.dateQ, 2, Days);
+		boost::shared_ptr<VanillaSwap> swap(
+			new VanillaSwap(swapType, ComponentPrincipalMust.nominal[0],
+			fixed_Leg.fixedSchedule(startDate, endDateObj.dateQ), fixedrate, fixedLegObj.basisQ,
+			floating_leg.floatSchedule(startDate, endDateObj.dateQ), myIndex, 0.0,
+			floatingLegObj.basisQ));
+		return swap;
+	}
+	break;
+	case EfficiencyProduct::SwaptionStyle::BERM:
+	{
+		Date startDate = startDateObj.dateQ.operator+=(Period(componentOption.freqQ));
+
+		boost::shared_ptr<VanillaSwap> swap(
+			new VanillaSwap(swapType, ComponentPrincipalMust.nominal[0],
+			fixed_Leg.fixedSchedule(startDate, endDateObj.dateQ), fixedrate, fixedLegObj.basisQ,
+			floating_leg.floatSchedule(startDate, endDateObj.dateQ), myIndex, 0.0,
+			floatingLegObj.basisQ));
+		return swap;
+	}
+	break;
+	default:
+	{
+		boost::shared_ptr<VanillaSwap> swap(
+			new VanillaSwap(swapType, ComponentPrincipalMust.nominal[0],
+			fixed_Leg.fixedSchedule(maturityObj.dateQ, endDateObj.dateQ), fixedrate, fixedLegObj.basisQ,
+			floating_leg.floatSchedule(maturityObj.dateQ, endDateObj.dateQ), myIndex, 0.0,
+			floatingLegObj.basisQ));
+		return swap;
+	}
+	break;
+	}
+
 	boost::shared_ptr<VanillaSwap> swap(
 		new VanillaSwap(swapType, ComponentPrincipalMust.nominal[0],
 		fixed_Leg.fixedSchedule(maturityObj.dateQ, endDateObj.dateQ), fixedrate, fixedLegObj.basisQ,
@@ -78,82 +135,86 @@ boost::shared_ptr< VanillaSwap >  MustSwaption::constructVanillaSwap(boost::shar
 }
 void MustSwaption::makeSwaption(Handle<QuantLib::YieldTermStructure> forwardingTermStructure){
 	
-	//this->forwardingTermStructure = forwardingTermStructure;
 	this->setComponentsQuantLib();
 	boost::shared_ptr<VanillaSwap> swap = MustSwaption::constructVanillaSwap(myIndex);
 
-	Date maturityDate = TARGET().advance(maturityObj.dateQ, -2, Days);
 	switch (style){
-	case EfficiencyProduct::SwaptionStyle::EURO:
-	{
-		MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
-			new EuropeanExercise(maturityObj.dateQ)),
-			settlementType));
-	}
-	break;
-	case EfficiencyProduct::SwaptionStyle::AMER:
-	{
-		MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
-			new EuropeanExercise(maturityObj.dateQ)),
-			settlementType));
-	}
-	break;
-	case EfficiencyProduct::SwaptionStyle::BERM:
-	{
-		MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
-			new EuropeanExercise(maturityObj.dateQ)),
-			settlementType));
-	}
-	break;
-	default:
-	{
-		MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
-			new EuropeanExercise(maturityObj.dateQ)),
-			settlementType));
-	}
-	break;
-	}
+		case EfficiencyProduct::SwaptionStyle::EURO:
+		{
+			MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
+				new EuropeanExercise(maturityObj.dateQ)),
+				settlementType));
+		}
+		break;
+		case EfficiencyProduct::SwaptionStyle::AMER:
+		{
+			Date startDate = TARGET().advance(startDateObj.dateQ, 2, Days);
+			MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
+				new AmericanExercise(startDate, maturityObj.dateQ, false)), settlementType));
+		}
+		break;
+		case EfficiencyProduct::SwaptionStyle::BERM:
+		{
+			MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
+				new BermudanExercise(exerciseDates)),
+				settlementType));
+		}
+		break;
+		default:
+		{
+			MustSwaption::swaption = boost::shared_ptr<Swaption>(new Swaption(swap, boost::shared_ptr<Exercise>(
+				new EuropeanExercise(maturityObj.dateQ)),
+				settlementType));
+		}
+		break;
+		}
 }
 Real MustSwaption::price(){
 	switch (modelProduct) {
-	case EfficiencyProduct::EfficiencyModelProduct::EFFICIENCY_LMM:
-	{
-		//TO DO
-		return 0;
-	}
-	break;
-	case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_LMM:
-	{
-		//TO DO
-		
-		boost::shared_ptr<PricingEngine> QLMMEngine = setEngineQuantLibLMM();
-		swaption->setPricingEngine(QLMMEngine);
-		return	swaption->NPV();
-		return 0;
-	}
-	break;
-	case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_BLACKFT:
-	{
-		boost::shared_ptr<PricingEngine> QBftEngine = setEngineQuantLibBlackFT();
-		swaption->setPricingEngine(QBftEngine);
-		return	swaption->NPV();
-
-	}
-	break;
-	case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_HULLWHITE:
-	{
-		//TO DO
-		boost::shared_ptr<PricingEngine> HwEngine = setEngineQuantLibHullWhite();
-		swaption->setPricingEngine(HwEngine);
-		return	swaption->NPV();
-	}
-	break;
-	default://just to do something
-	{
-		return 0;
-	}
-	break;
-	}
+		case EfficiencyProduct::EfficiencyModelProduct::EFFICIENCY_LMM:
+		{
+			//TO DO
+			return 0;
+		}
+		break;
+		case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_LMM:
+		{
+			//TO DO
+			boost::shared_ptr<PricingEngine> QLMMEngine = setEngineQuantLibLMM();
+			swaption->setPricingEngine(QLMMEngine);
+			Real npv = swaption->NPV();
+			try{
+				vega = swaption->result<Real>("vega");
+			}
+			catch (...){
+				vega = 0;
+			}
+			return npv;
+		} 
+		break;
+		case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_BLACKFT:
+		{
+			boost::shared_ptr<PricingEngine> QBftEngine = setEngineQuantLibBlackFT();
+			swaption->setPricingEngine(QBftEngine);
+			Real npv = swaption->NPV();
+			vega = swaption->result<Real>("vega");
+			return npv;
+		}
+		break;
+		case EfficiencyProduct::EfficiencyModelProduct::QUANTLIB_HULLWHITE:
+		{
+			//TO DO
+			boost::shared_ptr<PricingEngine> HwEngine = setEngineQuantLibHullWhite();
+			swaption->setPricingEngine(HwEngine);
+			return	swaption->NPV();
+		}
+		break;
+		default://just to do something
+		{
+			return 0;
+		}
+		break;
+		}
 
 }
 boost::shared_ptr<PricingEngine> MustSwaption::setEngineQuantLibLMM(){
@@ -168,7 +229,7 @@ boost::shared_ptr<PricingEngine> MustSwaption::setEngineQuantLibLMM(){
 	//boost::shared_ptr<IborIndex> index = boost::shared_ptr<IborIndex>(new Euribor6M(forwardingTermStructure));
 	Date todaysDate =
 		myIndex->fixingCalendar().adjust(Date(6, October, 2014));
-	Settings::instance().evaluationDate() = todaysDate;
+	Settings::instance().evaluationDate() = today;
 
 	this->forwardingTermStructure.linkTo(ocurve);
 
@@ -209,7 +270,7 @@ boost::shared_ptr<PricingEngine> MustSwaption::setEngineQuantLibBlackFT(){
 	boost::shared_ptr<YieldTermStructure> ocurve = (cData.buildCurve(cData));
 	Date todaysDate =
 		myIndex->fixingCalendar().adjust(Date(6, October, 2014));
-	Settings::instance().evaluationDate() = todaysDate;
+	Settings::instance().evaluationDate() = today;
 	// Link the curve to the term structure
 	this->forwardingTermStructure.linkTo(ocurve);
 

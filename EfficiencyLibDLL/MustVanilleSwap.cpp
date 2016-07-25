@@ -7,7 +7,7 @@ using namespace QuantLib;
 using namespace boost;
 
 
-MustVanilleSwap::MustVanilleSwap(EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlHandle hdldoc, string trId) : EfficiencyLibProduct(typeProd,paths, modelProd, hdldoc, trId){
+MustVanilleSwap::MustVanilleSwap(Date valuationDate, EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlDocument hdldoc, string trId) : EfficiencyLibProduct(valuationDate, typeProd, paths, modelProd, hdldoc, trId){
 	this->modelProduct = modelProd;
 }
 
@@ -55,12 +55,16 @@ void MustVanilleSwap::setComponentsQuantLib(Handle<QuantLib::YieldTermStructure>
 
 	 // Link the curve to the term structure
 	 this->forwardingTermStructure.linkTo(ocurve);
-	 Date today(6, October, 2014);
+	 //Date today(6, October, 2014);
 	// today = calendar.adjust(today);
 	 Settings::instance().evaluationDate() = today;
 	 MustVanilleSwap::swap->setPricingEngine(boost::shared_ptr<PricingEngine>(
 		 new DiscountingSwapEngine(this->forwardingTermStructure)));
-	 return  this->swap->NPV();
+	 Real npv = this->swap->NPV();
+	 npvFixedLeg = this->swap->legNPV(0);
+	 npvFloatingLeg = this->swap->legNPV(1);
+
+	 return  npv;
  }
 
 //boost::shared_ptr< PricingEngine >  MustVanilleSwap::SetPricingEngine(string pricingEngineName, Handle<QuantLib::YieldTermStructure> discountingTermStructure, Handle<QuantLib::YieldTermStructure> forwardingTermStructure)

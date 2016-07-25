@@ -11,7 +11,7 @@ using namespace QuantLib;
 class EFFICIEBCYLIBDLL_API MustSwaption : public EfficiencyLibProduct
 {
 public:
-	MustSwaption(EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlHandle hdldoc, string trId);
+	MustSwaption(Date valuationDate, EfficiencyProduct::EfficiencyTypeProduct typeProd, string paths, EfficiencyProduct::EfficiencyModelProduct modelProd, TiXmlDocument hdldoc, string trId);
 	void setComponentsQuantLib();
 	void makeSwaption(Handle<QuantLib::YieldTermStructure> forwardingTermStructure);
 	boost::shared_ptr< VanillaSwap >  constructVanillaSwap(boost::shared_ptr<IborIndex> myIndex);
@@ -39,6 +39,7 @@ public:
 	EfficiencyProduct::EfficiencyModelProduct modelProduct;
 	Handle<SwaptionVolatilityStructure> volatility;
 	EfficiencyProduct::SwaptionStyle style;
+	std::vector<Date> exerciseDates;
 #pragma endregion
 
 //

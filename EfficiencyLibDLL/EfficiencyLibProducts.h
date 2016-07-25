@@ -20,7 +20,7 @@ class EFFICIEBCYLIBDLL_API EfficiencyLibProducts{
 
 public:
 	//EfficiencyLibProducts(){}
-	EfficiencyLibProducts(TiXmlHandle hdldoc) : Xmlhdldoc(hdldoc), portefeuille(hdldoc), catalogue(new Catalogue()){}
+	EfficiencyLibProducts(Date valuationdate, TiXmlDocument hdldoc) : today(valuationdate), doc(hdldoc), portefeuille(hdldoc), catalogue(new Catalogue()){}
 	/*Parametrage des modèles et des types de produits*/
 	void  setModelsProductsTypes();
 
@@ -35,11 +35,12 @@ public:
 	RelinkableHandle<YieldTermStructure> forwardingTermStructure;
 public:
 	Portefeuille portefeuille;
-
 private:
-	TiXmlHandle Xmlhdldoc;
+	//TiXmlHandle Xmlhdldoc;
+	TiXmlDocument doc;
 	Catalogue* catalogue;
-	
+	Date today; /* valuation date*/
+
 }; 
 
 #endif

@@ -27,7 +27,7 @@ namespace EfficiencyPricerLibApplication {
 			//TODO: Add the constructor code here
 			//
 			catalogue = new Catalogue();
-			catalogueIschange = false;
+			catalogueIsChanged = false;
 		}
 
 	protected:
@@ -55,7 +55,7 @@ namespace EfficiencyPricerLibApplication {
 
 
 	public:
-		bool catalogueIsChange;
+		bool catalogueIsChanged;
 	public:
 	private:
 
@@ -986,7 +986,7 @@ private: System::Void SaveCataloguebutton_Click(System::Object^  sender, System:
 		if (!catalogue->doublonsActifs(string(name), string(activate), indice))
 		{
 		catalogue->updateCatalogue(type, name, activate, modele);
-		catalogueIsChange = true;
+		catalogueIsChanged = true;
 		}
 		else
 		{
@@ -1038,7 +1038,7 @@ private: System::Void dataG_DataError(System::Object^ sender, DataGridViewDataEr
 
 private: System::Void CancelTypeProdButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	/* à compléter*/
-	catalogueIsChange = false;
+	catalogueIsChanged = false;
 }
 };
 }

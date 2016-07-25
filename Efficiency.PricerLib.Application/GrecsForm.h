@@ -191,6 +191,7 @@ namespace EfficiencyPricerLibApplication {
 			this->MinimumSize = System::Drawing::Size(590, 241);
 			this->Name = L"GrecsForm";
 			this->Text = L"Facteurs de risque";
+			this->Load += gcnew System::EventHandler(this, &GrecsForm::GrecsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->closePanel->ResumeLayout(false);
 			this->gridPanel->ResumeLayout(false);
@@ -224,5 +225,34 @@ namespace EfficiencyPricerLibApplication {
 	private: System::Void Closebutton_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Close();
 	}
+private: System::Void GrecsForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	if (_tableauGrecs != NULL && _tableauGrecs->size() >0) {
+		ShowDataGridGrecs();
+	}
+}
+
+private:
+	System::Void ShowDataGridGrecs()
+	{
+		dataGridView1->Rows->Add(_tableauGrecs->size());
+		// Afficher les éléments du tableau des résultats dans le dataGrid.
+		for (std::size_t indice = 0; indice < _tableauGrecs->size(); indice++)
+		{
+			dataGridView1->Rows[indice]->Cells[0]->Value
+				= gcnew String(std::get<0>(_tableauGrecs[0][indice]).c_str());
+			dataGridView1->Rows[indice]->Cells[1]->Value
+				= gcnew String(std::get<1>(_tableauGrecs[0][indice]).c_str());
+			dataGridView1->Rows[indice]->Cells[2]->Value
+				= std::get<2>(_tableauGrecs[0][indice]).ToString();
+			dataGridView1->Rows[indice]->Cells[3]->Value
+				= std::get<3>(_tableauGrecs[0][indice]).ToString();
+			dataGridView1->Rows[indice]->Cells[4]->Value
+				= std::get<4>(_tableauGrecs[0][indice]).ToString();
+			dataGridView1->Rows[indice]->Cells[5]->Value
+				= std::get<5>(_tableauGrecs[0][indice]).ToString();
+		}
+	}
+
+
 };
 }

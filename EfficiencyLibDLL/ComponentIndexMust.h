@@ -15,7 +15,7 @@ public class EFFICIEBCYLIBDLL_API ComponentIndexMust : public ComponentMust
 public:
 	// Constructeurs
 	ComponentIndexMust() :ComponentMust(){}
-	void setComponent(TiXmlHandle docMUSTHandle, string nameIndex, string tradeId);
+	void setComponent(TiXmlDocument doc, string nameIndex, string tradeId);
 
 	boost::shared_ptr<IborIndex> ConstructIndex(Handle<QuantLib::YieldTermStructure> forwardingTermStructure);
 	//attributs

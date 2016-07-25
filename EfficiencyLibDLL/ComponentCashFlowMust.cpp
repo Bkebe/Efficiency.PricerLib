@@ -1,6 +1,7 @@
 #include "ComponentCashFlowMust.h"
-void ComponentCashFlowMust::setComponent(TiXmlHandle docMUSTHandle, string nameLeg, string tradeId)
+void ComponentCashFlowMust::setComponent(TiXmlDocument doc, string nameLeg, string tradeId)
 {
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Component;
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 

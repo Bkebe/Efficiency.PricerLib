@@ -1,8 +1,8 @@
 #include "DateMust.h"
 
-void DateMust::setComponent(TiXmlHandle docMUSTHandle, string nameDate, string tradeId)
+void DateMust::setComponent(TiXmlDocument doc, string nameDate, string tradeId)
 {
-
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Component;
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 

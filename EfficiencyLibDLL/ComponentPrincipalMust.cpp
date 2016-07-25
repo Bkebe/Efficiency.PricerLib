@@ -1,6 +1,6 @@
 #include "ComponentPrincipalMust.h"
 
-void ComponentPrincipalMust::setComponent(TiXmlHandle docMUSTHandle, string namePrincipal, string tradeId)
+void ComponentPrincipalMust::setComponent(TiXmlDocument doc, string namePrincipal, string tradeId)
 {
 	string nominalString;
 	double nominalDouble;
@@ -8,7 +8,7 @@ void ComponentPrincipalMust::setComponent(TiXmlHandle docMUSTHandle, string name
 	TiXmlElement *Component;
 
 	TiXmlNode *Pointer;
-
+	TiXmlHandle docMUSTHandle(&doc);
 	TiXmlElement *Trade = docMUSTHandle.FirstChild("BODY").FirstChild("TRADELIST").FirstChild("MUST_TR").ToElement();
 
 	while (Trade)
@@ -131,9 +131,9 @@ void ComponentPrincipalMust::setComponent(TiXmlHandle docMUSTHandle, string name
 					//*** Dates
 
 					DateMust* startDateNominal = new DateMust();
-					startDateNominal->setComponent(docMUSTHandle, startDate, tradeId);
+					startDateNominal->setComponent(doc, startDate, tradeId);
 					DateMust* endDateNominal = new DateMust();
-					endDateNominal->setComponent(docMUSTHandle, endDate, tradeId);
+					endDateNominal->setComponent(doc, endDate, tradeId);
 
 
 					AmortNotional(startDateNominal->dateQ, endDateNominal->dateQ, nombre_fois, formuleAmort);

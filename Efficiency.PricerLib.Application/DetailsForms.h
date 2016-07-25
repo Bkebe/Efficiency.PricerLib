@@ -105,7 +105,7 @@ namespace EfficiencyPricerLibApplication {
 			this->dataGridView1->Location = System::Drawing::Point(3, 3);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(555, 193);
+			this->dataGridView1->Size = System::Drawing::Size(555, 207);
 			this->dataGridView1->TabIndex = 1;
 			// 
 			// Column1
@@ -146,7 +146,7 @@ namespace EfficiencyPricerLibApplication {
 			// CloseButton
 			// 
 			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->CloseButton->Location = System::Drawing::Point(457, 10);
+			this->CloseButton->Location = System::Drawing::Point(457, 6);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(101, 32);
 			this->CloseButton->TabIndex = 2;
@@ -158,9 +158,9 @@ namespace EfficiencyPricerLibApplication {
 			// 
 			this->cloePanel->Controls->Add(this->CloseButton);
 			this->cloePanel->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->cloePanel->Location = System::Drawing::Point(0, 199);
+			this->cloePanel->Location = System::Drawing::Point(0, 213);
 			this->cloePanel->Name = L"cloePanel";
-			this->cloePanel->Size = System::Drawing::Size(561, 45);
+			this->cloePanel->Size = System::Drawing::Size(561, 55);
 			this->cloePanel->TabIndex = 3;
 			// 
 			// gridPanel
@@ -169,7 +169,7 @@ namespace EfficiencyPricerLibApplication {
 			this->gridPanel->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->gridPanel->Location = System::Drawing::Point(0, 0);
 			this->gridPanel->Name = L"gridPanel";
-			this->gridPanel->Size = System::Drawing::Size(561, 199);
+			this->gridPanel->Size = System::Drawing::Size(561, 213);
 			this->gridPanel->TabIndex = 4;
 			// 
 			// DetailsForms
@@ -177,7 +177,7 @@ namespace EfficiencyPricerLibApplication {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
-			this->ClientSize = System::Drawing::Size(561, 244);
+			this->ClientSize = System::Drawing::Size(561, 268);
 			this->Controls->Add(this->gridPanel);
 			this->Controls->Add(this->cloePanel);
 			this->MinimumSize = System::Drawing::Size(577, 283);

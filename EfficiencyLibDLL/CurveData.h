@@ -267,7 +267,7 @@ boost::shared_ptr<YieldTermStructure> buildCurve(const CurveData &cd)
 {
 	    Calendar calendar = TARGET();
 
-		Date today(6, October, 2014);
+		Date today(8, October, 2014);
 		today = calendar.adjust(today);
       //  Settings::instance().evaluationDate() = today;
         Natural settlementDays = 2;
@@ -920,8 +920,8 @@ boost::shared_ptr<YieldTermStructure> buildCurve(const CurveData &cd)
 		 
 
 	FowSwapTermStructure->enableExtrapolation();
-	return zeroYield;
-	//return FowSwapTermStructure;
+	//return zeroStructure;
+  return FowSwapTermStructure;
 
 	
 }

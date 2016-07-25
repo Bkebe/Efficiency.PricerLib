@@ -15,7 +15,7 @@ public class EFFICIEBCYLIBDLL_API  ComponentCashFlowMust : public ComponentMust
 public:
 	ComponentCashFlowMust(){}
 	// Constructeurs
-	void setComponent(TiXmlHandle docMUSTHandle, string nameLeg, string tradeId);
+	void setComponent(TiXmlDocument doc, string nameLeg, string tradeId);
 
 	//attributs
 	string CashFlowCcy;

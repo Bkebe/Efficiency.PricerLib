@@ -31,7 +31,7 @@ using namespace std;
 public:
 	// Constructeurs
 	MatriceMust() {}
-	void setComponent(TiXmlHandle docMUSTHandle, std::string nameMatrix, std::string tradeId);
+	void setComponent(TiXmlDocument doc, std::string nameMatrix, std::string tradeId);
 
 	//map contient la matrice qui, pour chaque paramètre Must  affecte son equivalent QuantLib
 	vector<vector<string>> matrice;

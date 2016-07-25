@@ -102,6 +102,9 @@
     <ClInclude Include="CurveData.h">
       <Filter>MakertData</Filter>
     </ClInclude>
+    <ClInclude Include="EnumMust.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Catalogue.cpp">
@@ -168,6 +171,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ComponentMust.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumMust.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

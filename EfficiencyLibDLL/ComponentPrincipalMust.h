@@ -16,7 +16,7 @@ public class EFFICIEBCYLIBDLL_API  ComponentPrincipalMust : ComponentMust
 public:
 	// Constructeurs
 	ComponentPrincipalMust(){}
-	void setComponent(TiXmlHandle docMUSTHandle, string namePrincipal, string tradeId);
+	void setComponent(TiXmlDocument doc, string namePrincipal, string tradeId);
 
 	//*** Méthode d'amortissement
 

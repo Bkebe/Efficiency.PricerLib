@@ -3,7 +3,7 @@
     <productList>
         <prod name="EFFICIENCY_SWAP" type="SWAP" activate="True" modele="QUANTLIB_FLOW">EFFICIENCY_SWAP.xml</prod>
         <prod name="EFFICIENCY_CAPFLOOR" type="CAPFLOOR" activate="True" modele="QUANTLIB_BLACKFT">EFFICIENCY_CAPFLOOR.xml</prod>
-        <prod name="EFFICIENCY_SWAPTION" type="SWAPTION" activate="True" modele="QUANTLIB_BLACKFT">EFFICIENCY_SWAPTION.xml</prod>
+        <prod name="EFFICIENCY_SWAPTION" type="SWAPTION" activate="True" modele="QUANTLIB_HULLWHITE">EFFICIENCY_SWAPTION.xml</prod>
     </productList>
     <typeList>
         <prod type="SWAP">EFFICIENCY_SWAP.xml</prod>
